@@ -46,13 +46,12 @@
             if (interpreter_toggle.checked === true)
                 resolve()
             else {
-                function changeListener() {
-                    if (interpreter_toggle.checked === true) {
-                        interpreter_toggle.removeEventListener('change', changeListener)
+                const interval_id = setInterval(() => {
+                    if(interpreter_toggle.checked === true){
+                        clearInterval(interval_id)
                         resolve()
                     }
-                }
-                interpreter_toggle.addEventListener('change', changeListener)
+                }, 250)
             }
         })
     }
