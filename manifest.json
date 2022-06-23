@@ -1,0 +1,24 @@
+{
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "name": "TIO Syntax Highlighter",
+    "short_name": "tiohl",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "Syntax highlighter for TryItOnline(https://tio.run)",
+    "web_accessible_resources": [
+        "index.css"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://tio.run/"
+            ],
+            "css": [
+                "index.css"
+            ],
+            "js": [
+                "index.js"
+            ]
+        }
+    ]
+}
