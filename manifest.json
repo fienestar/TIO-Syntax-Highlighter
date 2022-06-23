@@ -11,6 +11,7 @@
     },
     "description": "Syntax highlighter for TryItOnline(https://tio.run)",
     "web_accessible_resources": [
+        "syntax-highlight.js",
         "index.css"
     ],
     "content_scripts": [
