@@ -27,10 +27,7 @@
             script.src = src
             script.crossOrigin = 'anonymous'
             script.referrerPolicy = 'no-referrer'
-            script.addEventListener('load', () => {
-                console.log("load " + src)
-                resolve()
-            })
+            script.addEventListener('load', () => resolve())
             document.body.appendChild(script)
         })
     }
