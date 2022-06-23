@@ -3,16 +3,21 @@
     "name": "TIO Syntax Highlighter",
     "short_name": "tiohl",
     "version": "0.0.1",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "icons": {
         "16": "icons/icon-16.png",
         "48": "icons/icon-48.png",
         "128": "icons/icon-128.png"
     },
-    "description": "Syntax highlighter for TryItOnline(https://tio.run)",
+    "description": "Syntax highlighter for Try It Online (https://tio.run)",
     "web_accessible_resources": [
-        "syntax-highlight.js",
-        "index.css"
+        {
+            "resources": [
+                "syntax-highlight.js",
+                "index.css"
+            ],
+            "matches": ["https://tio.run/*"]
+        }
     ],
     "content_scripts": [
         {
