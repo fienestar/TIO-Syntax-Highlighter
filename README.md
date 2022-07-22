@@ -1,5 +1,7 @@
 # TIO Syntax Highlighter
 
+![logo](https://github.com/fienestar/TIO-Syntax-Highlighter/blob/main/icons/icon-128.png)
+
 Syntax highlighter for Try It Online (https://tio.run)
 - syntax highlight
 - autoindent
