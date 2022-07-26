@@ -46,3 +46,7 @@ textarea {
 .CodeMirror {
     height: auto !important;
 }
+
+.CodeMirror pre {
+    word-break: break-word;
+}

@@ -83,6 +83,7 @@
         autoCloseTags: true,
         mode: getMode(),
         indentUnit: 4,
+        lineWrapping: true,
         tabSize: 4,
         extraKeys: {
             'Tab': () => { },
