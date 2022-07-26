@@ -10,7 +10,7 @@ textarea {
 
 #code-box * {
     cursor: text !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     font-family: 'DejaVu Sans Mono', monospace;
 }
 
