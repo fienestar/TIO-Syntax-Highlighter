@@ -1,13 +1,13 @@
 (async () => {
     const language_table = {
-        'apl': 'apl',
-        'cpp': 'x-c++src',
-        'c': 'x-csrc',
-        'python3': 'x-python',
-        'python2': 'x-python',
-        'javascript': 'javascript',
-        'ecmascript': 'ecmascript',
-        'typescript': 'typescript'
+        'apl': 'text/apl',
+        'cpp': 'text/x-c++src',
+        'c': 'text/x-csrc',
+        'python3': 'text/x-python',
+        'python2': 'text/x-python',
+        'javascript': 'text/javascript',
+        'ecmascript': 'text/ecmascript',
+        'typescript': 'text/typescript',
     }
 
     function loadCSS(href) {
@@ -68,7 +68,7 @@
         if (typeof languageId === 'undefined')
             return 'null'
         const language = languageId.split('-')[0]
-        const mode = 'text/' + (language_table[language] ?? 'x-' + language)
+        const mode = language_table[language] ?? 'text/x-' + language;
         const info = CodeMirror.findModeByMIME(mode);
         if (info && editor_exists_flag)
             CodeMirror.autoLoadMode(editor, info.mode)
