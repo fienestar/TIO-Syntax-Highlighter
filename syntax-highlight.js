@@ -32,13 +32,13 @@
         })
     }
 
-    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.4/codemirror.min.css')
-    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.4/theme/material-darker.min.css')
-    await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.4/codemirror.min.js')
-    await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.4/addon/mode/loadmode.min.js')
-    await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.4/mode/meta.min.js')
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css')
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/material-darker.min.css')
+    await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js')
+    await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/mode/loadmode.min.js')
+    await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/meta.min.js')
     
-    CodeMirror.modeURL = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.4/mode/%N/%N.min.js";
+    CodeMirror.modeURL = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/%N/%N.min.js";
 
     function waitLoadable() {
         return new Promise(resolve => {
