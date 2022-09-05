@@ -8,6 +8,16 @@
         'javascript': 'text/javascript',
         'ecmascript': 'text/ecmascript',
         'typescript': 'text/typescript',
+        'coffeescript2': 'text/x-coffeescript',
+        'cs': 'text/x-csharp',
+        'powershell': 'application/x-powershell',
+        'objective': 'text/x-objectivec',
+        'clisp': 'text/x-common-lisp',
+        'dart': 'application/dart',
+        'r': 'text/x-rsrc',
+        'rust': 'text/x-rustsrc',
+        'swift4': 'text/x-swift',
+        'visual': 'text/x-vb',
     }
 
     function loadCSS(href) {
@@ -68,7 +78,9 @@
         if (typeof languageId === 'undefined')
             return 'null'
         const language = languageId.split('-')[0]
-        const mode = language_table[language] ?? 'text/x-' + language;
+        let mode = language_table[language] ?? 'text/x-' + language;
+        if(languageId === 'haskell-literate')
+            mode = 'text/x-literate-haskell'
         const info = CodeMirror.findModeByMIME(mode);
         if (info && editor_exists_flag)
             CodeMirror.autoLoadMode(editor, info.mode)
