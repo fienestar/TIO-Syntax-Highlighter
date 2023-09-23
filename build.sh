@@ -1,1 +1,1 @@
-zip -qq -r release.zip icons *.js *.css manifest.json
+zip -qq -r dist/app.zip icons *.js *.css manifest.json

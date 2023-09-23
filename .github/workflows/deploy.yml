@@ -1,0 +1,23 @@
+name: deploy
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        chmod +x ./build.sh
+        ./build.sh
+    - name: Upload & release
+      uses: mnao305/chrome-extension-upload@v4.0.1
+      with:
+        file-path: dist/app.zip
+        extension-id: aefbnplemmloeljfgdafhkaghkihbnen
+        client-id: ${{ secrets.DEPLOY_CLIENT_ID }}
+        client-secret: ${{ secrets.DEPLOY_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.DEPLOY_REFRESH_TOKEN }}
