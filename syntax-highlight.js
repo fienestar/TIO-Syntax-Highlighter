@@ -20,6 +20,10 @@
         'visual': 'text/x-vb',
     }
 
+    const need_simple = {
+        'rust': true
+    }
+
     function loadCSS(href) {
         const link = document.createElement('link')
         link.rel = 'stylesheet'
@@ -47,7 +51,7 @@
     await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js')
     await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/mode/loadmode.min.js')
     await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/meta.min.js')
-    
+
     CodeMirror.modeURL = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/%N/%N.min.js";
 
     function waitLoadable() {
@@ -57,13 +61,20 @@
                 resolve()
             else {
                 const interval_id = setInterval(() => {
-                    if(interpreter_toggle.checked === true){
+                    if (interpreter_toggle.checked === true) {
                         clearInterval(interval_id)
                         resolve()
                     }
                 }, 250)
             }
         })
+    }
+
+    async function loadSimple() {
+        if (!loadSimple.load) {
+            await loadJS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/mode/simple.js')
+            loadSimple.load = true
+        }
     }
 
     await waitLoadable()
@@ -74,12 +85,15 @@
     code.parentElement.insertBefore(box, code)
     box.appendChild(code)
 
-    function getMode() {
+    async function getMode() {
         if (typeof languageId === 'undefined')
             return 'null'
         const language = languageId.split('-')[0]
+        if (need_simple[language]) {
+            await loadSimple();
+        }
         let mode = language_table[language] ?? 'text/x-' + language;
-        if(languageId === 'haskell-literate')
+        if (languageId === 'haskell-literate')
             mode = 'text/x-literate-haskell'
         const info = CodeMirror.findModeByMIME(mode);
         if (info && editor_exists_flag)
@@ -93,7 +107,7 @@
         lineNumbers: true,
         autoCloseBrackets: true,
         autoCloseTags: true,
-        mode: getMode(),
+        mode: await getMode(),
         indentUnit: 4,
         lineWrapping: true,
         tabSize: 4,
@@ -103,7 +117,7 @@
         indentWithTabs: true
     });
     editor_exists_flag = true
-    getMode()
+    await getMode()
 
     function updateByteCount(code) {
         const encoding = languages[languageId].encoding
@@ -132,8 +146,8 @@
         editor.setValue($('#code').value)
     }
 
-    new MutationObserver(() => {
-        editor.setOption('mode', getMode());
+    new MutationObserver(async () => {
+        editor.setOption('mode', await getMode());
     }).observe(document.getElementById('lang-link'), {
         attributes: true
     })
